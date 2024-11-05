@@ -1,0 +1,151 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    ViewBag.Active = "Home";
+}
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <p>
+                <h4>Created by <a href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fabout.twitter.com%2Fresources%2Fbuttons&amp;region=follow_link&amp;screen_name=johnstaveley&amp;tw_p=followbutton&amp;variant=2.0" rel="noopener noreferrer">@@johnstaveley</a> - Last updated 12/06/2024</h4>
+                The security essentials project takes a standard Mvc project and applies Azure platform and .net application security best practise to it. Following are the list of threats it protects you from.
+                It keeps your application secure through build, platform checks and unit tests.
+                This Mvc solution was adapted from the standard MVC template in Visual Studio, MVC5, .net 4.8 and Bootstrap 4.
+                <ol>
+                    <li>SQL Injection: It uses Entity Framework ORM</li>
+                    <li>
+                        Weak account management:
+                        <ul>
+                            <li>Uses claims based authorization</li>
+                            <li>Uses the strong hash PBKDF2 with an adaptable number of iterations, also the Argon2 hashing routine is available, new hashing algorithms can be added as better ones are identified or existing ones have weaknesses identified</li>
+                            <li>Enforces a strong password - Checks for previously pwned passwords, bans weak passwords, enforces minimum password strength, allows special characters, bans too many repeated characters</li>
+                            <li>Has a water tight account management process</li>
+                            <li>Prevents anti-enumeration through well designed messages</li>
+                            <li>Logs account activity which can be checked by the user to see if there is any illicit activity</li>
+                            <li>Emails on key account events and gives anti-phishing advice</li>
+                            <li>Verifies user's email address by sending an email to the specified address</li>
+                            <li>Re-verifies user's email address when requesting a change of email</li>
+                            <li>Prevents brute force of logon, registration or password reset through anti-throttling and CAPTCHA</li>
+                            <li>Encryption of security question data using the RijndaelManaged AES 512 encryption algorithm</li>
+                            <li>Increasing wait time on logon failure rather than account lock out</li>
+                            <li>Unit tests for password hashing and authorization attributes</li>
+                        </ul>
+                    </li>
+                    <li>
+                        XSS:
+                        <ul>
+                            <li>Incorporation of the WPL AntiXSS library to encode all output</li>
+                            <li>Enforce the location of the scripts/assets/actions the browser can run using a content security policy header</li>
+                            <li>Feature Policy disallows features used in the browser such as camera, sync-xhr etc</li>
+                            <li>Enables browser's anti-xss capabilities by sending the XSS-Protection header</li>
+                        </ul>
+                    </li>
+                    <li>Insecure direct object references: In user edit page it checks the user is entitled to be there</li>
+                    <li>
+                        Security misconfiguration:
+                        <ul>
+                            <li>Base Application keeps as much switched off as possible</li>
+                            <li>AzSK Arm template checker ensures unwanted features are switched off and platform is secure as possible</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Sensitive data exposure:
+                        <ul>
+                            <li>Auto-complete off on registration page</li>
+                            <li>Enforces TLS of all data in production through use of web.configs</li>
+                            <li>Ensures website can only ever be requested over TLS using HSTS header</li>
+                            <li>Turns off verbose errors and trace in production</li>
+                            <li>Removes unnecessary headers which indicate .net framework version</li>
+                            <li>Removes server information disclosure headers from responses</li>
+                            <li>Do not publish package.json file which IIS will do by default</li>
+                            <li>NoCache header applied to any controller which publishes user sensitive data, unit tests for same</li>
+                        </ul>
+                    </li>
+                    <li>Missing Function Level Access Control: Sensitive functions decorated with Authorize and Role attributes. Unit tests to ensure admin functions require the admin role</li>
+                    <li>
+                        CSRF: Ensures anti-forgery token is used on all Post/Put/Ajax operations by checking through use of a base controller
+                        <ul>
+                            <li>Unit tests to ensure all state changing mvc or web api methods validate an anti forgery token</li>
+                            <li>Uses SameSite Lax attribute on session cookie</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Using components with known vulnerabilities:
+                        <ul>
+                            <li>.Net framework is the latest version and all NuGet packages kept updated</li>
+                            <li>Binaries are scanned using OWASP Dependency checker, uses a supression file for mitigated vulnerabilities</li>
+                            <li>All components are scanned using Whitesource bolt on checkin for finding open source vulnerabilities</li>
+                        </ul>
+                    </li>
+                    <li>Unvalidated redirects and forwards: Covered by RedirectToLocal in MVC4</li>
+                </ol>
+                Other threats it protects against and features:
+                <ul>
+                    <li>Clickjacking: Disallow site appearing in frame by applying header and disallowing site from being opened in an iFrame</li>
+                    <li>Form overposting: Example given of how to avoid this</li>
+                    <li>Acceptance tests for key functionality</li>
+                    <li>Forces user to change their password if their password has expired</li>
+                    <li>Rosyln Analyzers security rules enabled to check the code at build for security flaws<a href="https://docs.microsoft.com/en-us/visualstudio/code-quality/security-warnings" target="_blank" rel="noopener noreferrer">https://docs.microsoft.com/en-us/visualstudio/code-quality/security-warnings</a></li>
+                    <li>Professionally pentested</li>
+                    <li>Additional Http Headers such as Permissions-Policy, X-Frame-Options, Referrer-Policy, Expect-CT, X-Content-Type-Options</li>
+                </ul>
+                <h4>OWASP Top 10 2017</h4>
+                The Top 10 list of vulnerabilities has been updated in 2017. The list is much the same with the addition of:
+                <ul>
+                    <li>A4 - XML External Entities (XXE). This application does not parse XML documents and so would not be affected. However if it did this only applies to .Net 4.5 and earlier.</li>
+                    <li>A8 - Insecure Deserialisation. Only affects Java applications</li>
+                    <li>A10 - Insufficient Logging and Monitoring. Extensive logging on security violations using Serilog which can be used by an operator to detect an attacker. Covers Account management, XSS, Form overposting, CSRF, unvalidated requests and forwards, content security policy and http public key pinning violations</li>
+                </ul>
+            </p>
+            <p>NB: Runs on SQL Express and IIS Express, requires mail server and recaptcha (optional) set up. See readme.md in project for more information</p>
+            <p>
+                <h2>Steps to secure your website on the server</h2>
+                When you have your application ready to deploy (or even before) you need to consider the additional steps you will need to take on the server. Generally these will be undertaken by an infrastructure person. I would recommend the following steps:
+                <ul>
+                    <li>Apply a good SSL policy on the server: <a href="https://www.ssllabs.com/ssltest/" target="_blank" rel="noopener noreferrer">https://www.ssllabs.com/ssltest/</a> e.g. Configure your server to avoid a Poodle downgrade attack</li>
+                    <li>Enable retail mode on the production server</li>
+                    <li>Patch the server up to the hilt</li>
+                    <li>Register for HSTS preload here: https://hstspreload.appspot.com/ (This requires your site is published with TLS)</li>
+                    <li>Set the CAA DNS record, this says who can issue a certificate for your website. Use <a href="http://www.sslmate.com/caa" target="_blank" rel="noopener noreferrer">http://www.sslmate.com/caa</a>. This is preferred over setting the HPKP header as it is easier to change.</li>
+                    <li>Register SPF DNS record for sending email</li>
+                    <li>Set Expect-CT header to enforce who is allowed to issue TLS certificates</li>
+                    <li>Secure access to the database and blob storage by putting them on their own virtual network with firewalled access</li>
+                </ul>
+            </p>
+            <p>
+                <h2>How the incorporated build process ensures you remain secure over time</h2>
+                This solution comes with azure-pipelines.yml build and test script. Running this in Azure Devops ensures the following:
+                <ul>
+                    <li>1. SQL Injection - OWASP Zap, Check OWASP Zap report for vulnerabilities</li>
+                    <li>2. Account management process - Partially checked using Unit tests and Acceptance tests</li>
+                    <li>3. XSS - OWASP Zap, Check OWASP Zap report for vulnerabilities</li>
+                    <li>4. Insecure direct object references - Partially checked using Unit tests</li>
+                    <li>5. Security misconfiguration - AzSK Arm template checker ensures the platform is secure and default features are switched off, Check OWASP Zap report for vulnerabilities</li>
+                    <li>6. NoCache checked using Unit tests, Check OWASP Zap report for vulnerabilities</li>
+                    <li>7. Missing file level access control - Partially checked using Unit tests</li>
+                    <li>8. CSRF - Partially checked using Unit tests, Check OWASP Zap report for vulnerabilities</li>
+                    <li>9. Vulnerable dependencies - Checked using <a href="https://www.owasp.org/index.php/OWASP_Dependency_Check" target="_blank" rel="noopener noreferrer">OWASP Dependency checker</a> and <a href="https://bolt.whitesourcesoftware.com/" target="_blank" rel="noopener noreferrer">Whitesource bolt</a>, check the reports in Azure Devops, stored as a build artefact for OWASP DC and in the Whitesource bolt tab under pipelines. These can also be set to fail the build, if required</li>
+                    <li>10. Unvalidated redirects and forwards - Partially checked using Unit tests, Check OWASP Zap report for vulnerabilities</li>
+                </ul>
+            </p>
+            <p>
+                <h2>How you can ensure your application remains secure over time</h2>
+                <ul>
+                    <li>Add unit tests to ensure correct role is applied to functions requiring security such as admin</li>
+                    <li>Run the build process detailed above</li>
+                    <li>Patch the server!</li>
+                    <li>If you are using Github then you can setup SAST code scanning alerts in the security tab using \.github\workflows\codeql-analysis.yml</li>
+                    <li>If doing an open source project, updating the security policy SECURITY.md will tell developers how to contact you if they spot a vulnerability and which versions are maintained for security patches</li>
+                    <li>Ensure SSL policy remains current: <a href="https://www.ssllabs.com/ssltest/" target="_blank" rel="noopener noreferrer">https://www.ssllabs.com/ssltest/</a></li>
+                    <li>Check the logs for repeated security violation attempts and block users if required</li>
+                    <li>Check your CSP against <a href="https://csp-evaluator.withgoogle.com/" target="_blank" rel="noopener noreferrer">https://csp-evaluator.withgoogle.com/</a></li>
+                    <li>Check your headers <a href="https://securityheaders.com/" target="_blank" rel="noopener noreferrer">https://securityheaders.com/</a></li>
+                    <li>Undertake threat modelling with each new feature based on the provided threat model 'Threat model.tm7' using the Microsoft threat modelling tool <a href="https://aka.ms/tmtpreview" target="_blank" rel="noopener noreferrer">https://aka.ms/tmtpreview </a></li>
+                </ul>
+            </p>
+            <p>Created 29/01/2015</p>
+            <img src="https://johnstaveley.visualstudio.com/Security%20Essentials/_apis/build/status/johnstaveley.SecurityEssentials?branchName=master" alt="Azure DevOps Build Status Badge" />
+        </div>
+    </section>

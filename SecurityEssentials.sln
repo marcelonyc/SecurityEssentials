@@ -1,0 +1,96 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityEssentials.Web", "SecurityEssentials\SecurityEssentials.Web.csproj", "{AC8E9B1B-9815-4398-B755-57A59615788C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{09560B8F-66F4-41A7-8A9F-115634B90F1B}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C4100ED1-7C81-4B0E-8EA9-24264764DE22}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit", "Unit", "{CCD62364-6792-41E8-A501-7F4D43AF8CD2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Acceptance", "Acceptance", "{D710B6F1-E786-4E82-B92E-98AACA955F50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Unit.Tests", "Tests\Unit\Web.Unit.Tests\Web.Unit.Tests.csproj", "{BE375AC1-572D-4EC6-BD6F-A841C67E04C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Acceptance.Tests", "Tests\Acceptance\Web.Acceptance.Tests\Web.Acceptance.Tests.csproj", "{8E3FF9F2-3785-4969-AC8E-BB81134C3310}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7F5BA8B3-D2CD-4B77-BFBB-201BB5E0CF71}"
+	ProjectSection(SolutionItems) = preProject
+		Developer README.md = Developer README.md
+		README.md = README.md
+		SECURITY.md = SECURITY.md
+		Threat Model.tm7 = Threat Model.tm7
+	EndProjectSection
+EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "DeployPlatform", "DeployPlatform\DeployPlatform.deployproj", "{E5550525-E680-4986-B1B6-933D3A9F87F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{323BDF27-A894-4D78-9663-FCDB78C88CB3}"
+	ProjectSection(SolutionItems) = preProject
+		Build\AzSKArmTemplateCheckExclude.csv = Build\AzSKArmTemplateCheckExclude.csv
+		Build\azure-pipelines.yml = Build\azure-pipelines.yml
+		.github\workflows\codeql-analysis.yml = .github\workflows\codeql-analysis.yml
+		Build\OwaspDcSuppression.xml = Build\OwaspDcSuppression.xml
+		Build\OwaspZap.context = Build\OwaspZap.context
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Integration|Any CPU = Integration|Any CPU
+		Live|Any CPU = Live|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC8E9B1B-9815-4398-B755-57A59615788C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC8E9B1B-9815-4398-B755-57A59615788C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC8E9B1B-9815-4398-B755-57A59615788C}.Integration|Any CPU.ActiveCfg = Integration|Any CPU
+		{AC8E9B1B-9815-4398-B755-57A59615788C}.Integration|Any CPU.Build.0 = Integration|Any CPU
+		{AC8E9B1B-9815-4398-B755-57A59615788C}.Live|Any CPU.ActiveCfg = Live|Any CPU
+		{AC8E9B1B-9815-4398-B755-57A59615788C}.Live|Any CPU.Build.0 = Live|Any CPU
+		{AC8E9B1B-9815-4398-B755-57A59615788C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC8E9B1B-9815-4398-B755-57A59615788C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE375AC1-572D-4EC6-BD6F-A841C67E04C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE375AC1-572D-4EC6-BD6F-A841C67E04C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE375AC1-572D-4EC6-BD6F-A841C67E04C5}.Integration|Any CPU.ActiveCfg = Integration|Any CPU
+		{BE375AC1-572D-4EC6-BD6F-A841C67E04C5}.Integration|Any CPU.Build.0 = Integration|Any CPU
+		{BE375AC1-572D-4EC6-BD6F-A841C67E04C5}.Live|Any CPU.ActiveCfg = Live|Any CPU
+		{BE375AC1-572D-4EC6-BD6F-A841C67E04C5}.Live|Any CPU.Build.0 = Live|Any CPU
+		{BE375AC1-572D-4EC6-BD6F-A841C67E04C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE375AC1-572D-4EC6-BD6F-A841C67E04C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E3FF9F2-3785-4969-AC8E-BB81134C3310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E3FF9F2-3785-4969-AC8E-BB81134C3310}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E3FF9F2-3785-4969-AC8E-BB81134C3310}.Integration|Any CPU.ActiveCfg = Integration|Any CPU
+		{8E3FF9F2-3785-4969-AC8E-BB81134C3310}.Integration|Any CPU.Build.0 = Integration|Any CPU
+		{8E3FF9F2-3785-4969-AC8E-BB81134C3310}.Live|Any CPU.ActiveCfg = Live|Any CPU
+		{8E3FF9F2-3785-4969-AC8E-BB81134C3310}.Live|Any CPU.Build.0 = Live|Any CPU
+		{8E3FF9F2-3785-4969-AC8E-BB81134C3310}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E3FF9F2-3785-4969-AC8E-BB81134C3310}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5550525-E680-4986-B1B6-933D3A9F87F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5550525-E680-4986-B1B6-933D3A9F87F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5550525-E680-4986-B1B6-933D3A9F87F4}.Integration|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5550525-E680-4986-B1B6-933D3A9F87F4}.Integration|Any CPU.Build.0 = Debug|Any CPU
+		{E5550525-E680-4986-B1B6-933D3A9F87F4}.Live|Any CPU.ActiveCfg = Live|Any CPU
+		{E5550525-E680-4986-B1B6-933D3A9F87F4}.Live|Any CPU.Build.0 = Live|Any CPU
+		{E5550525-E680-4986-B1B6-933D3A9F87F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5550525-E680-4986-B1B6-933D3A9F87F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CCD62364-6792-41E8-A501-7F4D43AF8CD2} = {C4100ED1-7C81-4B0E-8EA9-24264764DE22}
+		{D710B6F1-E786-4E82-B92E-98AACA955F50} = {C4100ED1-7C81-4B0E-8EA9-24264764DE22}
+		{BE375AC1-572D-4EC6-BD6F-A841C67E04C5} = {CCD62364-6792-41E8-A501-7F4D43AF8CD2}
+		{8E3FF9F2-3785-4969-AC8E-BB81134C3310} = {D710B6F1-E786-4E82-B92E-98AACA955F50}
+		{323BDF27-A894-4D78-9663-FCDB78C88CB3} = {7F5BA8B3-D2CD-4B77-BFBB-201BB5E0CF71}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {155679A0-759A-4CC4-BB50-09BD82119C4C}
+	EndGlobalSection
+EndGlobal

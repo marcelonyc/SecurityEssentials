@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminEmailAddresses": { "value": "<ChangeMe>" },
+    "databaseEdition": { "value": "Basic" },
+    "databaseMaxSizeBytes": { "value": "2147483648" },
+    "databaseServiceLevelObjective": { "value": "Basic" },
+    "developerIpAddresses": { "value": "<ChangeMe>" },
+    "encryptionPassword": {
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/a0d704f5-f3ad-49cb-ad02-bda68d45ed1f/resourceGroups/SecurityEssentials-Int/providers/Microsoft.KeyVault/vaults/securityessentialsint"
+        },
+        "secretName": "EncryptionPassword"
+      }
+    },
+    "environmentName": { "value": "int" },
+    "hostNameSslStates": {
+      "value": [
+        {
+          "name": "[concat(parameters('siteName'), parameters('environmentName'), '.azurewebsites.net')]",
+          "sslState": "Disabled",
+          "hostType": "Standard"
+        },
+        {
+          "name": "[concat(parameters('siteName'), parameters('environmentName'), '.', parameters('siteBaseUrl')]",
+          "sslState": "Disabled",
+          "hostType": "Standard"
+        },
+        {
+          "name": "[concat(parameters('siteName'), parameters('environmentName'), '.scm.azurewebsites.net')]",
+          "sslState": "Disabled",
+          "hostType": "Repository"
+        }
+      ]
+    },
+    "servicePlanSkuTier": { "value": "Standard" },
+    "servicePlanSkuSize": { "value": "S1" },
+    "servicePlanSkuFamily": { "value": "S" },
+    "servicePlanSkuCapacity": { "value": 1 },
+    "siteName": { "value": "securityessentials" },
+    "sqlAdminUserName": { "value": "<ChangeMe>" },
+    "sqlAdminPassword": {
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/a0d704f5-f3ad-49cb-ad02-bda68d45ed1f/resourceGroups/SecurityEssentials-Int/providers/Microsoft.KeyVault/vaults/securityessentialsint"
+        },
+        "secretName": "SqlAzurePassword"
+      }
+    },
+    "sqlserverName": { "value": "<ChangeMe>" },
+    "storageAccountNonVNetName": { "value": "<ChangeMe>" },
+    "subscriptionId": { "value": "<ChangeMe>" },
+    "webDatabaseName": { "value": "<ChangeMe>" },
+    "siteBaseUrl": { "value": "<ChangeMe>" }
+  }
+}
